@@ -1,0 +1,27 @@
+	def is_Possible(self, grid):
+		#1,2,3,0 = src,dest,blank,wall [LRUD]
+		n , seen = len(grid) , set()
+		def dfs(r,c):
+		    if (max(r,c) > n or min(r,c) < 0):
+		        return  False
+		    if (r*n + c) in seen:
+		        return False
+	        if grid[r][c] == 0:
+	            return False
+	        seen.add(r*n + c)
+		    if grid[r][c] == 2:
+		        return True
+	        if (dfs(r - 1, c) or 
+	            dfs(r + 1, c) or 
+	            dfs(r, c  - 1) or 
+	            dfs(r , c + 1)):
+	            return True
+	        return False
+	        
+		for i in range(n):
+		    for j in range(n):
+		        if grid[i][j] == 1:
+		            if dfs(i,j):
+		                return 1
+		          
+        return 0
